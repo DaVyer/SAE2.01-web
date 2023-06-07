@@ -14,5 +14,7 @@
             "email": "raphael.gomes@etudiant.univ-reims.fr"
         }
     ],
-    "require": {}
+    "require": {
+        "ext-pdo": "*"
+    }
 }
