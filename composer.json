@@ -10,8 +10,12 @@
     },
     "authors": [
         {
-            "name": "Raphael Gomes, Gwendal Rodrigues",
-            "email": "raphael.gomes@etudiant.univ-reims.fr, gwendal.rodrigues@etudiant.univ-reims.fr"
+            "name": "Raphael Gomes",
+            "email": "raphael.gomes@etudiant.univ-reims.fr"
+        },
+        {
+            "name": "Gwendal Rodrigues",
+            "email": "gwendal.rodrigues@etudiant.univ-reims.fr"
         }
     ],
     "require": {
