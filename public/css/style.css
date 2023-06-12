@@ -1,0 +1,90 @@
+html{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+
+}
+
+.header, .footer{
+    margin: 20px 7.5% 20px 7.5%;
+    max-width: 85%;
+    background-color: #1a1a1a;
+    border-radius: 15px 15px 15px 15px;
+}
+
+body{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #222222;
+    color: white;
+}
+
+.content{
+    margin-left: 7.5%;
+    margin-right: 7.5%;
+    max-width: 85%;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    padding: 10px;
+    background-color: #1a1a1a;
+    border-radius: 15px 15px 15px 15px;
+}
+
+.list{
+    display: flex;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.film{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 20px;
+}
+
+.modif{
+    padding-bottom: 20px;
+    padding-top: 15px;
+}
+
+.film__name{
+    color: #ffffff;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+    color: cornflowerblue
+}
+
+a:active {
+    text-decoration: none;
+}
+
+.content::-webkit-scrollbar
+{
+    width: 12px;
+}
+
+.content::-webkit-scrollbar-thumb
+{
+    border-radius: 15px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: aliceblue;
+}
+

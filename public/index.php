@@ -9,11 +9,10 @@ use Entity\Cover;
 
 $webPage = new AppWebPage();
 
-$webPage->setTitle("Film");
-$webPage->appendCssUrl("public/style.css");
+$webPage->setTitle("Films");
+$webPage->appendCssUrl("css/style.css");
 
 $listeFilm = (new Entity\Collection\MovieCollection())->findAll();
-
 
 
 foreach ($listeFilm as $film) {
@@ -23,12 +22,12 @@ foreach ($listeFilm as $film) {
     $img = base64_encode($cover->getJpeg());
     $webPage->appendContent("
 <div class='film'>
-    <a href='movie.php?filmId={$film->getId()}'>
-        <div class='film__poster'>
-        <img src='data:image/jpeg;charset=utf-8;base64, {$img}'>
-        </div>
-    </a>
-    <a href class='movie.php?filmId={$film->getId()}'>".$moviesName."</a>
+<a href='movie.php?filmId={$film->getId()}'>
+    <div class='film__poster'>
+    <img src='data:image/jpeg;charset=utf-8;base64, {$img}'>
+    </div>
+</a>
+<a class='film__name' href class='movie.php?filmId={$film->getId()}'>".$moviesName."</a>
 </div>
 <br>
 ");
