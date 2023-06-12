@@ -2,38 +2,36 @@
 
 declare(strict_types=1);
 
-
-use Entity\Movie;
+use Entity\People;
 use Html\AppWebPage;
+use Entity\Cover;
+use Entity\Movie;
 
-require_once '../src/Html/WebPage.php';
-require_once '../vendor/autoload.php';
+$webPage = new AppWebPage();
+$webPage->appendCssUrl("css\style.css");
 
-$webpage = new AppWebPage();
-$webpage->setTitle("Informations");
-
+$filmId = 1;
 if (isset($_GET['filmId'])) {
-    $filmId = (int)$_GET['filmId'];
+    if (!empty($_GET['filmId'])) {
+        if (ctype_digit($_GET['filmId'])) {
+            $filmId = $_GET['filmId'];
 
-    try {
-        $MovieName = Movie::findById($filmId);
-        $Peoples = $MovieName->getPeoples();
+            $webPageFilm = Movie::findById((int)$_GET['filmId']);
+            $webPage->setTitle("Film - {$webPageFilm->getTitle()}");
+            $cover = Cover::findById($webPageFilm->getPosterId());
+            $img = base64_encode($cover->getJpeg());
 
-        $webpage->appendContent("<h1>{$MovieName->getTitle()}</h1>");
-
-        if (count($Peoples) > 0) {
-            $webpage->appendContent("<h2>Cast:</h2>");
-            $webpage->appendContent("<ul>");
-
-            foreach ($Peoples as $people) {
-                $webpage->appendContent("<li>{$people->getName()}</li>");
-            }
-
-            $webpage->appendContent("</ul>");
-        } else {
-            $webpage->appendContent("<p>Aucun album disponible pour cet artiste.</p>");
+            $webPage->appendContent("
+            <div class='film__infos'>
+                <div class='film__poster'><img src='data:image/jpeg;charset=utf-8;base64, {$img}'></div>
+                <div class='film__title'>{$webPageFilm->getTitle()}</div>
+                <div class='film__date'>{$webPageFilm->getReleaseDate()}</div>
+                <div class='film__originalTitle'>{$webPageFilm->getOriginalTitle()}</div>
+                <div class='film__tagline'>{$webPageFilm->getTagline()}</div>
+                <div class='film__overview'>{$webPageFilm->getOverview()}</div>
+            </div>");
         }
-
     }
 }
-echo $webpage->toHTML();
+
+echo $webPage->toHTML();
