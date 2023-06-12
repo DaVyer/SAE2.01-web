@@ -34,11 +34,11 @@ class Cover
             <<<'SQL'
                 SELECT *
                 FROM image
-                WHERE id = :posterId
+                WHERE id = :imageId
             SQL
         );
 
-        $stmt->bindValue(':posterId', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':imageId', $id, PDO::PARAM_INT);
         $stmt->setFetchMode(PDO::FETCH_CLASS, "Entity\Cover");
         $stmt->execute();
 
