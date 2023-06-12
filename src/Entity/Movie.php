@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Entity;
 
+use Database\MyPdo;
+use PDO;
+
 class Movie
 {
 
@@ -89,5 +92,21 @@ class Movie
         return $this->id;
     }
 
+    public static function findById(int $id): Movie
+    {
+        $stmt = MyPdo::getInstance()->prepare(
+            <<<'SQL'
+                SELECT *
+                FROM movie
+                WHERE id = :id
+            SQL
+        );
+
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, "Entity\Movie");
+        $stmt->execute();
+
+        return $stmt->fetch();
+    }
 
 }
