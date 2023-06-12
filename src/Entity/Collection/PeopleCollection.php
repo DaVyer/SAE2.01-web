@@ -18,19 +18,19 @@ class PeopleCollection
         $stmt = MyPDO::getInstance()->prepare(
             <<<'SQL'
             SELECT *
-            FROM album
-            WHERE artistId = :artistId
+            FROM people
+            WHERE id = :actorId
             ORDER BY year DESC, name
         SQL
         );
 
-        $stmt->bindValue(':artistId', $actorId);
+        $stmt->bindValue(':actorId', $actorId);
         $stmt->execute();
 
-        $albums = $stmt->fetchAll(PDO::FETCH_CLASS, "Entity\People");
+        $actors = $stmt->fetchAll(PDO::FETCH_CLASS, "Entity\People");
 
-        foreach ($albums as $album) {
-            $data[] = $album;
+        foreach ($actors as $actor) {
+            $data[] = $actor;
         }
 
         return $data;
