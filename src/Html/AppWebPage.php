@@ -27,7 +27,7 @@ class AppWebPage extends WebPage
     </div>
   
     <div class="content">
-        <div class='list'>{$this->getBody()}</div>
+        {$this->getBody()}
     </div>
   
     <div class="footer">
