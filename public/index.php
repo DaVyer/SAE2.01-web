@@ -15,7 +15,7 @@ $listeFilm = (new Entity\Collection\MovieCollection())->findAll();
 
 foreach ($listeFilm as $film) {
     $moviesName = $webPage->escapeString("{$film->getTitle()}");
-    $webPage->appendContent("<a href='movie.php?movieId={$film->getId()}'>".$moviesName."</a><br>");
+    $webPage->appendContent("<a href='movie.php?filmId={$film->getId()}'>".$moviesName."</a><br>");
 }
 
 echo $webPage->toHTML();
