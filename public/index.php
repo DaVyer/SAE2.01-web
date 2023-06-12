@@ -19,3 +19,4 @@ foreach ($listeFilm as $film) {
 }
 
 echo $webPage->toHTML();
+
