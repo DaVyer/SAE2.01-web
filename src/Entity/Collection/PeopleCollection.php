@@ -11,7 +11,7 @@ class PeopleCollection
      * @param int $id
      * @return array
      */
-    public static function findByActorId(int $actorId): arrayI
+    public static function findByActorId(int $id): array
     {
         $data = [];
 
@@ -19,12 +19,12 @@ class PeopleCollection
             <<<'SQL'
             SELECT *
             FROM people
-            WHERE id = :actorId
+            WHERE id = :id
             ORDER BY year DESC, name
         SQL
         );
 
-        $stmt->bindValue(':actorId', $actorId);
+        $stmt->bindValue(':id', $id);
         $stmt->execute();
 
         $actors = $stmt->fetchAll(PDO::FETCH_CLASS, "Entity\People");
