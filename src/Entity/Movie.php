@@ -109,4 +109,27 @@ class Movie
         return $stmt->fetch();
     }
 
+    public function getCover(): ?Cover
+    {
+        $stmt = MyPdo::getInstance()->prepare(
+            <<<'SQL'
+        SELECT *
+        FROM image
+        WHERE id = :imageId
+    SQL
+        );
+
+        $stmt->bindValue(':imageId', $this->posterId, PDO::PARAM_INT);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, "Entity\Cover");
+        $stmt->execute();
+
+        $cover = $stmt->fetch();
+
+        if ($cover !== false) {
+            return $cover;
+        } else {
+            return null;
+        }
+    }
+
 }
