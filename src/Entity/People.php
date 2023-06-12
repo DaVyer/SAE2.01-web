@@ -84,7 +84,7 @@ class People
     SQL
         );
 
-        $stmt->bindValue(':imageId', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':imageId', $this->avatarId, PDO::PARAM_INT);
         $stmt->setFetchMode(PDO::FETCH_CLASS, "Entity\Cover");
         $stmt->execute();
 
