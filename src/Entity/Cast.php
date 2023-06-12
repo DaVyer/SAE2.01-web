@@ -11,4 +11,45 @@ class Cast
     private int $orderIndex;
     private int $id;
 
+    /**
+     * @return int
+     */
+    public function getMovieId(): int
+    {
+        return $this->movieId;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPeopleId(): int
+    {
+        return $this->peopleId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRole(): string
+    {
+        return $this->role;
+    }
+
+    /**
+     * @return int
+     */
+    public function getOrderIndex(): int
+    {
+        return $this->orderIndex;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+    
+
 }
