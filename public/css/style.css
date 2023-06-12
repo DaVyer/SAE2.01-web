@@ -1,0 +1,42 @@
+html{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+
+}
+
+body{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.content{
+    overflow-y: scroll;
+    scrollbar-color: rebeccapurple green;
+    scrollbar-width: thin;
+    padding: 10px;
+}
+
+.list{
+    display: flex;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    border: 1px solid black;
+    justify-content: center;
+}
+
+.film{
+    display: flex;
+    flex-direction: column;
+}
+
+.film__poster{
+    display: flex;
+
+}
