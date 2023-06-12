@@ -71,6 +71,22 @@ class People
     {
         return $this->id;
     }
-    
+
+    public static function findById(int $id): People
+    {
+        $stmt = MyPdo::getInstance()->prepare(
+            <<<'SQL'
+                SELECT *
+                FROM people
+                WHERE id = :id
+            SQL
+        );
+
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, "Entity\People");
+        $stmt->execute();
+
+        return $stmt->fetch();
+    }
 
 }
