@@ -71,4 +71,22 @@ class People
     {
         return $this->id;
     }
+
+    public function getCover(): Cover
+    {
+        $stmt = MyPdo::getInstance()->prepare(
+            <<<'SQL'
+            SELECT *
+            FROM image
+            WHERE id = :imageId
+        SQL
+        );
+
+        $stmt->bindValue(':imageId', $this->avatarId, PDO::PARAM_INT);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, "Entity\Cover");
+        $stmt->execute();
+
+        return $stmt->fetch();
+    }
+
 }
