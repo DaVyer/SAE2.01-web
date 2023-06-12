@@ -17,6 +17,9 @@ body{
 }
 
 .content{
+    margin-left: 7.5%;
+    margin-right: 7.5%;
+    max-width: 85%;
     overflow-y: scroll;
     scrollbar-color: rebeccapurple green;
     scrollbar-width: thin;
@@ -34,9 +37,12 @@ body{
 .film{
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
+    margin: 20px;
 }
 
-.film__poster{
-    display: flex;
-
+.modif{
+    padding-bottom: 5px;
+    padding-top: 5px;
 }
+
