@@ -163,11 +163,13 @@ a:active {
     flex-direction: row;
     margin: 10px;
     text-align: center;
+    border: 1px solid black;
+    border-radius: 25px;
 }
 
 .actor__content{
-    display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .actor__image{
