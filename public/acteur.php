@@ -20,11 +20,19 @@ $actor = People::findById($peopleId);
 $webPage = new AppWebPage("Détails de l'acteur : " . $actor->getName());
 $webPage->setTitle("Films - {$actor->getName()}");
 
-$cover = Cover::findById($actor->getAvatarId());
-$img = base64_encode($cover->getJpeg());
+$cover = $actor->getCover();
+
+if ($cover !== null) {
+    $img = base64_encode($cover->getJpeg());
+    $webPage->appendContent("<div class='actor__image'><a href='acteur.php?peopleId={$actor->getId()}'> <img src='data:image/jpeg;charset=utf-8;base64,{$img}' alt='{$actor->getName()}'></a></div>");
+
+} else {
+    $webPage->appendContent("<div class='actor__image'><a href='acteur.php?peopleId={$actor->getId()}'><img src='img/actor.png' alt='{$actor->getName()}'></a></div>");
+}
+
 
 $webPage->appendContent("<h2>{$actor->getName()}</h2>");
-$webPage->appendContent("<img src='data:image/jpeg;charset=utf-8;base64, {$img}' alt='{$actor->getName()}'>");
+
 $webPage->appendContent("<p>Date de naissance : {$actor->getBirthday()}</p>");
 $webPage->appendContent("<p>Lieu de naissance : {$actor->getPlaceOfBirth()}</p>");
 $webPage->appendContent("<p>Biographie : {$actor->getBiography()}</p>");
@@ -42,9 +50,9 @@ if ($movies) {
         $cover = $movie->getCover();
         if ($cover) {
             $img = base64_encode($cover->getJpeg());
-            $webPage->appendContent("<img src='data:image/jpeg;charset=utf-8;base64,{$img}' alt='{$actor->getName()}'>");
+            $webPage->appendContent("<a href='movie.php?filmId={$movie->getId()}'> <img src='data:image/jpeg;charset=utf-8;base64,{$img}' alt='{$actor->getName()}'></a>");
         } else {
-            $webPage->appendContent("<img src='img/actor.png' alt='{$actor->getName()}'>");
+            $webPage->appendContent("<a href='movie.php?filmId={$movie->getId()}'> <img src='img/actor.png' alt='{$actor->getName()}'></a>");
         }
         $webPage->appendContent("<p>Rôle : {$role}</p>");
         $webPage->appendContent("<p>{$movie->getTitle()}</p>");
