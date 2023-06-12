@@ -16,6 +16,8 @@ class People
     private string $placeOfBirth;
     private int $id;
 
+
+
     /**
      * @return int
      */
@@ -82,7 +84,7 @@ class People
     SQL
         );
 
-        $stmt->bindValue(':imageId', $this->avatarId, PDO::PARAM_INT);
+        $stmt->bindValue(':imageId', $id, PDO::PARAM_INT);
         $stmt->setFetchMode(PDO::FETCH_CLASS, "Entity\Cover");
         $stmt->execute();
 
@@ -95,4 +97,20 @@ class People
         }
     }
 
+    public static function findById(int $id): People
+    {
+        $stmt = MyPdo::getInstance()->prepare(
+            <<<'SQL'
+        SELECT *
+        FROM people
+        WHERE id = :peopleId
+        SQL
+        );
+
+        $stmt->bindValue(':peopleId', $id, PDO::PARAM_INT);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, "Entity\People");
+        $stmt->execute();
+
+        return $stmt->fetch();
+    }
 }
