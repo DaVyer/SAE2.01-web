@@ -36,8 +36,8 @@ if (!empty($actors)) {
         $cast = Cast::findByMovieAndPeopleId($filmId, $actor->getId());
         $role = $cast->getRole();
         $webPage->appendContent("<div>");
-        if (!$cover === null) {
-            $cover = $actor->getCover();
+        $cover = $actor->getCover();
+        if ($cover !== null) {
             $img = base64_encode($cover->getJpeg());
             $webPage->appendContent("<img src='data:image/jpeg;charset=utf-8;base64,{$img}' alt='{$actor->getName()}'>");
         } else {
