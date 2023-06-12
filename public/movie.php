@@ -18,6 +18,8 @@ if (isset($_GET['filmId'])) {
     }
 }
 
+$webPage->appendCssUrl("public/style.css");
+
 $webPageFilm = Movie::findById((int)$_GET['filmId']);
 $webPage->setTitle("Film - {$webPageFilm->getTitle()}");
 $cover = Cover::findById($webPageFilm->getPosterId());
@@ -26,11 +28,15 @@ $img = base64_encode($cover->getJpeg());
 $webPage->appendContent("
             <div class='film__infos'>
                 <div class='film__poster'><img src='data:image/jpeg;charset=utf-8;base64, {$img}'></div>
-                <div class='film__title'>{$webPageFilm->getTitle()}</div>
-                <div class='film__date'>{$webPageFilm->getReleaseDate()}</div>
-                <div class='film__originalTitle'>{$webPageFilm->getOriginalTitle()}</div>
-                <div class='film__tagline'>{$webPageFilm->getTagline()}</div>
-                <div class='film__overview'>{$webPageFilm->getOverview()}</div>
+                <div class='film__container'>
+                    <div>
+                        <div class='film__title'>Titre : {$webPageFilm->getTitle()}</div>
+                        <div class='film__date'>Date de sortie : {$webPageFilm->getReleaseDate()}</div>
+                    </div>
+                    <div class='film__originalTitle'>Titre original : {$webPageFilm->getOriginalTitle()}</div>
+                    <div class='film__tagline'>Slogan : {$webPageFilm->getTagline()}</div>
+                    <div class='film__overview'>Résumé : {$webPageFilm->getOverview()}</div>
+                </div>
             </div>");
 
 echo $webPage->toHTML();
