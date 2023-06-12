@@ -18,6 +18,6 @@ class MovieCollection
         );
         $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_CLASS, "Entity\Artist");
+        return $stmt->fetchAll(PDO::FETCH_CLASS, "Entity\Movie");
     }
 }

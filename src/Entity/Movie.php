@@ -98,11 +98,11 @@ class Movie
             <<<'SQL'
                 SELECT *
                 FROM movie
-                WHERE id = :id
+                WHERE id = :movieId
             SQL
         );
 
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':movieId', $id, PDO::PARAM_INT);
         $stmt->setFetchMode(PDO::FETCH_CLASS, "Entity\Movie");
         $stmt->execute();
 
