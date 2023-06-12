@@ -14,7 +14,7 @@ $webPage->appendCssUrl("css/style.css");
 
 $listeFilm = (new Entity\Collection\MovieCollection())->findAll();
 
-
+$webPage->appendContent("<div class='list'>");
 foreach ($listeFilm as $film) {
     $moviesName = $webPage->escapeString("{$film->getTitle()}");
     $webPageFilm = Movie::findById($film->getId())->getPosterId();
@@ -32,6 +32,7 @@ foreach ($listeFilm as $film) {
 <br>
 ");
 }
+$webPage->appendContent("</div>");
 
 echo $webPage->toHTML();
 
