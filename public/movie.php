@@ -21,36 +21,63 @@ $webPage->setTitle("Film - {$webPageFilm->getTitle()}");
 $cover = Cover::findById($webPageFilm->getPosterId());
 $img = base64_encode($cover->getJpeg());
 
-$webPage->appendContent("<img src='data:image/jpeg;charset=utf-8;base64, {$img}'>");
-$webPage->appendContent("<p>Original Title: {$webPageFilm->getOriginalTitle()}</p>");
-$webPage->appendContent("<p>Release Date: {$webPageFilm->getReleaseDate()}</p>");
-$webPage->appendContent("<p>Overview: {$webPageFilm->getOverview()}</p>");
+$webPage->appendContent("
+        <div class='film'>
+            <div class='film__infos'>
+                <div class='film__poster'><img src='data:image/jpeg;charset=utf-8;base64, {$img}'></div>
+                <div class='film__container'>
+                    <div>
+                        <div class='film__title'>Titre : {$webPageFilm->getTitle()}</div>
+                        <div class='film__date'>Date de sortie : {$webPageFilm->getReleaseDate()}</div>
+                    </div>
+                    <div class='film__originalTitle'>Titre original : {$webPageFilm->getOriginalTitle()}</div>
+                    <div class='film__tagline'>Slogan : {$webPageFilm->getTagline()}</div>
+                    <div class='film__overview'>Résumé : {$webPageFilm->getOverview()}</div>
+                </div>
+            </div>
+        </div>");
 
 $peopleCollection = new PeopleCollection();
 $actors = $peopleCollection->findByMovieId($filmId);
 
+
+
 if (!empty($actors)) {
-    $webPage->appendContent("<h2>Acteurs :</h2>");
+    $webPage->appendContent("
+    <div class='actor'>
+    <h2>Acteurs</h2>
+    <div class='actor__infos'>");
 
     foreach ($actors as $actor) {
         $cast = Cast::findByMovieAndPeopleId($filmId, $actor->getId());
         $role = $cast->getRole();
-        $webPage->appendContent("<div>");
+        $webPage->appendContent("<div class='actor__container'>");
         $cover = $actor->getCover();
+
         if ($cover !== null) {
             $img = base64_encode($cover->getJpeg());
-            $webPage->appendContent("<img src='data:image/jpeg;charset=utf-8;base64,{$img}' alt='{$actor->getName()}'>");
-        } else {
-            $webPage->appendContent("<img src='img/actor.png' alt='{$actor->getName()}'>");
+            $webPage->appendContent("<div class='actor__image'><img src='data:image/jpeg;charset=utf-8;base64,{$img}' alt='{$actor->getName()}'></div>");
 
+        } else {
+            $webPage->appendContent("<div class='actor__image'><img src='img/actor.png' alt='{$actor->getName()}'></div>");
         }
 
-        $webPage->appendContent("<p>{$actor->getName()}</p>");
-        $webPage->appendContent("<p>Rôle: {$role}</p>");
-        $webPage->appendContent("</div>");
+        $webPage->appendContent("
+        <div class='actor__content'>
+            <div class='actor__name'>
+                <p>{$actor->getName()}</p>
+            </div>
+        <div class='actor__role'>
+            <p>Rôle: {$role}</p>
+        </div>
+    </div>
+</div>");
     }
+
 } else {
     $webPage->appendContent("<p>Aucun acteur trouvé pour ce film.</p>");
 }
+
+$webPage->appendContent("</div></div>");
 
 echo $webPage->toHTML();
