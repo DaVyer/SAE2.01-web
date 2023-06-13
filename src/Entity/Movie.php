@@ -222,7 +222,7 @@ SQL
 
     public function update(): Movie
     {
-        $stmt = myPdo::getInstance()->prepare(
+        $stmt = MyPdo::getInstance()->prepare(
             <<<SQL
             UPDATE movie
             SET title = :movieTitle, 
@@ -233,7 +233,6 @@ SQL
                 runtime = :movieRunTime,
                 tagline = :movieTagline,
                 posterId = :moviePosterId
-                id = :movieId
             WHERE id = :movieId
 SQL
         );
@@ -247,60 +246,58 @@ SQL
         $stmt->bindValue(':moviePosterId', $this->getPosterId());
         $stmt->bindValue(':movieId', $this->getId());
 
-        $stmt->setFetchMode(\PDO::FETCH_CLASS, "Entity\Movie");
+        $stmt->setFetchMode(PDO::FETCH_CLASS, "Entity\Movie");
         $stmt->execute();
 
         return clone $this;
     }
 
     public static function create(
-        string $name,
-        ?int $id = null,
-        ?string $overview,
+        string $title,
         string $originalLanguage,
-        int $runtime,
         string $originalTitle,
-        ?int $posterId,
+        string $overview,
         string $releaseDate,
-        ?string $tagline
+        int $runtime,
+        string $tagline,
+        int $posterId = null,
+        int $id = null
     ): Movie {
-
         $newMovie = new Movie();
-        $newMovie->setId($id);
-        $newMovie->setTitle($name);
-        $newMovie->setOverview($overview);
+        $newMovie->setTitle($title);
         $newMovie->setOriginalLanguage($originalLanguage);
-        $newMovie->setRuntime($runtime);
         $newMovie->setOriginalTitle($originalTitle);
-        $newMovie->setPosterId($posterId);
+        $newMovie->setOverview($overview);
         $newMovie->setReleaseDate($releaseDate);
+        $newMovie->setRuntime($runtime);
         $newMovie->setTagline($tagline);
+        $newMovie->setPosterId($posterId);
+        $newMovie->setId($id);
 
         return $newMovie;
     }
 
     public function insert()
     {
-        $stmt = MyPDO::getInstance()->prepare(
+        $stmt = MyPdo::getInstance()->prepare(
             <<<SQL
-                INSERT INTO movie (id, title, overview, originalLanguage, originalTitle, posterId, releaseDate, runtime, tagline)
-                VALUES (:artistId, :artistName, :movieOverview, :movieOL, :movieOT, :moviePosterId, :movieRD, :movieRunTime, :movieTagline)
+                INSERT INTO movie (title, originalLanguage, originalTitle, overview, releaseDate, runtime, tagline, posterId)
+                VALUES (:movieTitle, :movieOL, :movieOT, :movieOverview, :movieRD, :movieRunTime, :movieTagline, :moviePosterId)
             SQL
         );
 
-        $stmt->bindValue(':movieTitle', $this->title);
-        $stmt->bindValue(':movieOL', $this->originalLanguage);
-        $stmt->bindValue(':movieOT', $this->originalTitle);
-        $stmt->bindValue(':movieOverview', $this->overview);
-        $stmt->bindValue(':movieRD', $this->releaseDate);
-        $stmt->bindValue(':movieRunTime', $this->runtime);
-        $stmt->bindValue(':movieTagline', $this->tagline);
-        $stmt->bindValue(':moviePosterId', null);
-        $stmt->bindValue(':movieId', null);
+        $stmt->bindValue(':movieTitle', $this->getTitle());
+        $stmt->bindValue(':movieOL', $this->getOriginalLanguage());
+        $stmt->bindValue(':movieOT', $this->getOriginalTitle());
+        $stmt->bindValue(':movieOverview', $this->getOverview());
+        $stmt->bindValue(':movieRD', $this->getReleaseDate());
+        $stmt->bindValue(':movieRunTime', $this->getRuntime());
+        $stmt->bindValue(':movieTagline', $this->getTagline());
+        $stmt->bindValue(':moviePosterId', $this->getPosterId());
+
         $stmt->execute();
 
-        $this->setPosterId((int)MyPdo::getInstance()->lastInsertId());
-        $this->setId((int)MyPDO::getInstance()->lastInsertId());
+        $this->setId((int) MyPdo::getInstance()->lastInsertId());
 
         return clone $this;
     }
@@ -308,12 +305,12 @@ SQL
     public function save()
     {
         if (isset($this->id)) {
-            $artist = $this->update();
+            $movie = $this->update();
         } else {
-            $artist = $this->insert();
+            $movie = $this->insert();
         }
 
-        return $artist;
+        return $movie;
     }
 
 }
