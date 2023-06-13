@@ -9,13 +9,13 @@ use PDO;
 class Movie
 {
 
-    private int $posterId;
+    private ?int $posterId;
     private string $originalLanguage;
     private string $originalTitle;
-    private string $overview;
+    private ?string $overview;
     private string $releaseDate;
     private int $runtime;
-    private string $tagline;
+    private ?string $tagline;
     private string $title;
     private ?int $id = null;
 
@@ -23,7 +23,7 @@ class Movie
     /**
      * @return int
      */
-    public function getPosterId(): int
+    public function getPosterId(): ?int
     {
         return $this->posterId;
     }
@@ -47,7 +47,7 @@ class Movie
     /**
      * @return string
      */
-    public function getOverview(): string
+    public function getOverview(): ?string
     {
         return $this->overview;
     }
@@ -71,7 +71,7 @@ class Movie
     /**
      * @return string
      */
-    public function getTagline(): string
+    public function getTagline(): ?string
     {
         return $this->tagline;
     }
@@ -256,13 +256,13 @@ SQL
     public static function create(
         string $name,
         ?int $id = null,
-        string $overview,
+        ?string $overview,
         string $originalLanguage,
         int $runtime,
         string $originalTitle,
-        int $posterId,
+        ?int $posterId,
         string $releaseDate,
-        string $tagline
+        ?string $tagline
     ): Movie {
 
         $newMovie = new Movie();
