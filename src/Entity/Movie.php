@@ -247,9 +247,35 @@ SQL
         $stmt->bindValue(':moviePosterId', $this->getPosterId());
         $stmt->bindValue(':movieId', $this->getId());
 
-        $stmt->setFetchMode(\PDO::FETCH_CLASS, "Entity\Artist");
+        $stmt->setFetchMode(\PDO::FETCH_CLASS, "Entity\Movie");
         $stmt->execute();
 
         return clone $this;
+    }
+
+    public static function create(
+        string $name,
+        ?int $id = null,
+        string $overview,
+        string $originalLanguage,
+        int $runtime,
+        string $originalTitle,
+        int $posterId,
+        string $releaseDate,
+        string $tagline
+    ): Movie {
+
+        $newMovie = new Movie();
+        $newMovie->setId($id);
+        $newMovie->setTitle($name);
+        $newMovie->setOverview($overview);
+        $newMovie->setOriginalLanguage($originalLanguage);
+        $newMovie->setRuntime($runtime);
+        $newMovie->setOriginalTitle($originalTitle);
+        $newMovie->setPosterId($posterId);
+        $newMovie->setReleaseDate($releaseDate);
+        $newMovie->setTagline($tagline);
+
+        return $newMovie;
     }
 }
