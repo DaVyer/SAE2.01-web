@@ -19,19 +19,18 @@ if (!empty($_GET['filmId']) && ctype_digit($_GET['filmId'])) {
 $webPageFilm = Movie::findById($filmId);
 $webPage->setTitle("Film - {$webPageFilm->getTitle()}");
 $cover = Cover::findById($webPageFilm->getPosterId());
+$coverId = $webPageFilm->getPosterId();
 
-if ($cover !== null) {
-    $img = base64_encode($cover->getJpeg());
-    $webPage->appendContent("<a href='movie.php.filmId={$film->getId()}'><img src='data:image/jpeg;charset=utf-8;base64,{$img}' alt='{$film->getTitle()}'></a>");
-
+if ($coverId !== null) {
+    $img = "data:image/jpeg;charset=utf-8;base64, ".base64_encode($cover->getJpeg());
 } else {
-    $webPage->appendContent("<a href='movie.php.filmId={$film->getId()}'><img src='img/movie.png' alt='{$film->getTitle()}'></a>");
+    $img='img/movie.png';
 }
 
 $webPage->appendContent("
         <div class='film'>
             <div class='film__infos'>
-                <div class='film__poster'><img src='data:image/jpeg;charset=utf-8;base64, {$img}'></div>
+                <div class='film__poster'><img src='$img'></div>
                 <div class='film__container'>
                     <div>
                         <div class='film__title'>Titre : {$webPageFilm->getTitle()}</div>

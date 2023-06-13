@@ -25,10 +25,10 @@ foreach ($listeFilm as $film) {
     <div class='film__poster'>");
     if ($webPageFilm !== null) {
         $img = base64_encode($cover->getJpeg());
-        $webPage->appendContent("<a href='movie.php.filmId={$film->getId()}'><img src='data:image/jpeg;charset=utf-8;base64,{$img}' alt='{$film->getTitle()}'></a>");
+        $webPage->appendContent("<a href='movie.php?filmId={$film->getId()}'><img src='data:image/jpeg;charset=utf-8;base64,{$img}' alt='{$film->getTitle()}'></a>");
 
     } else {
-        $webPage->appendContent("<a href='movie.php.filmId={$film->getId()}'><img src='img/movie.png' alt='{$film->getTitle()}'></a>");
+        $webPage->appendContent("<a href='movie.php?filmId={$film->getId()}'><img src='img/movie.png' alt='{$film->getTitle()}'></a>");
     }
     $webPage->appendContent("
     
