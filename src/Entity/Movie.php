@@ -219,4 +219,37 @@ SQL
         $this->setId(null);
         return clone $this;
     }
+
+    public function update(): Movie
+    {
+        $stmt = myPdo::getInstance()->prepare(
+            <<<SQL
+            UPDATE movie
+            SET title = :movieTitle, 
+                originalLanguage = :movieOL, 
+                originalTitle = :movieOT, 
+                overview = :movieOverview, 
+                releaseDate = :movieRD, 
+                runtime = :movieRunTime,
+                tagline = :movieTagline,
+                posterId = :moviePosterId
+                id = :movieId
+            WHERE id = :movieId
+SQL
+        );
+        $stmt->bindValue(':movieTitle', $this->getTitle());
+        $stmt->bindValue(':movieOL', $this->getOriginalLanguage());
+        $stmt->bindValue(':movieOT', $this->getOriginalTitle());
+        $stmt->bindValue(':movieOverview', $this->getOverview());
+        $stmt->bindValue(':movieRD', $this->getReleaseDate());
+        $stmt->bindValue(':movieRunTime', $this->getRuntime());
+        $stmt->bindValue(':movieTagline', $this->getTagline());
+        $stmt->bindValue(':moviePosterId', $this->getPosterId());
+        $stmt->bindValue(':movieId', $this->getId());
+
+        $stmt->setFetchMode(\PDO::FETCH_CLASS, "Entity\Artist");
+        $stmt->execute();
+
+        return clone $this;
+    }
 }
