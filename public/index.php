@@ -27,7 +27,7 @@ foreach ($listeFilm as $film) {
     <img src='data:image/jpeg;charset=utf-8;base64, {$img}'>
     </div>
 </a>
-<a class='film__name' href class='movie.php?filmId={$film->getId()}'>".$moviesName."</a>
+<div class='film__name'><a href='movie.php?filmId={$film->getId()}'>".$moviesName."</a></div>
 </div>
 <br>
 ");
