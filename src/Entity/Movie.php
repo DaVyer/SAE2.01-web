@@ -17,7 +17,7 @@ class Movie
     private int $runtime;
     private string $tagline;
     private string $title;
-    private int $id;
+    private ?int $id = null;
 
 
     /**
@@ -87,7 +87,7 @@ class Movie
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -159,7 +159,7 @@ class Movie
     /**
      * @param int $id
      */
-    public function setId(int $id): void
+    public function setId(?int $id): void
     {
         $this->id = $id;
     }
@@ -204,4 +204,19 @@ class Movie
         }
     }
 
+    public function delete(): Movie
+    {
+        $stmt = myPdo::getInstance()->prepare(
+            <<<SQL
+            DELETE FROM movie
+            WHERE id = :movieId
+SQL
+        );
+        $stmt->bindValue(':movieId', $this->getId());
+        $stmt->setFetchMode(\PDO::FETCH_CLASS, "Entity\MOVIE");
+        $stmt->execute();
+
+        $this->setId(null);
+        return clone $this;
+    }
 }
