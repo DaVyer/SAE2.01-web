@@ -98,4 +98,10 @@ if (!empty($actors)) {
 
 $webPage->appendContent("</div></div>");
 
+$webPage->appendContent("
+    <form method='post' action='deleteMovie.php'>
+        <input type='hidden' name='filmId' value='$filmId'>
+        <input type='submit' value='Supprimer'>
+    </form>
+");
 echo $webPage->toHTML();

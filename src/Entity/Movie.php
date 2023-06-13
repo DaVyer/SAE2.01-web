@@ -213,7 +213,7 @@ class Movie
 SQL
         );
         $stmt->bindValue(':movieId', $this->getId());
-        $stmt->setFetchMode(\PDO::FETCH_CLASS, "Entity\MOVIE");
+        $stmt->setFetchMode(\PDO::FETCH_CLASS, "Entity\Movie");
         $stmt->execute();
 
         $this->setId(null);
