@@ -21,10 +21,10 @@ $webPage->appendContent("
             <input type='text' name='title' id='title' required>
         </label>
         <label for='originalLanguage'>Veuillez rentrer une version original
-            <input type='text' name='originalLanguage' id='originalLanguage'>
+            <input type='text' name='originalLanguage' id='originalLanguage' required>
         </label>
         <label for='originalTitle'>Veuillez rentrer un titre original
-            <input type='text' name='originalTitle' id='originalTitle'>
+            <input type='text' name='originalTitle' id='originalTitle' required>
         </label>
         <label for='overview'>Veuillez rentrer un résumé
             <input type='text' name='overview' id='overview'>
@@ -33,10 +33,10 @@ $webPage->appendContent("
             <input type='text' name='posterId' id='posterId'>
         </label>
         <label for='releaseDate'>Veuillez rentrer une date de sortie
-            <input type='text' name='releaseDate' id='releaseDate'>
+            <input type='text' name='releaseDate' id='releaseDate' required>
         </label>
         <label for='runtime'>Veuillez rentrer la durée du film
-            <input type='text' name='runtime' id='runtime'>
+            <input type='text' name='runtime' id='runtime' required>
         </label>
         <label for='tagline'>Veuillez rentrer la slogan du film
             <input type='text' name='tagline' id='tagline'>
@@ -45,5 +45,6 @@ $webPage->appendContent("
     <input type='submit' name='submit__form' id='submit__form'>
 </form>
 ");
+
 
 echo $webPage->toHTML();

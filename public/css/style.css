@@ -61,7 +61,11 @@ body{
     text-align: center;
 }
 
-
+.film__poster{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .content::-webkit-scrollbar
 {
