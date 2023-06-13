@@ -29,10 +29,10 @@ $webPage->appendContent("
 
 if ($cover !== null) {
     $img = base64_encode($cover->getJpeg());
-    $webPage->appendContent("<div class='actor__image'><a href='acteur.php?peopleId={$actor->getId()}'> <img src='data:image/jpeg;charset=utf-8;base64,{$img}' alt='{$actor->getName()}'></a></div>");
+    $webPage->appendContent("<div class='actor__image'><img src='data:image/jpeg;charset=utf-8;base64,{$img}' alt='{$actor->getName()}'></div>");
 
 } else {
-    $webPage->appendContent("<div class='actor__image'><a href='acteur.php?peopleId={$actor->getId()}'><img src='img/actor.png' alt='{$actor->getName()}'></a></div>");
+    $webPage->appendContent("<div class='actor__image'><img src='img/actor.png' alt='{$actor->getName()}'></div>");
 }
 if ($actor->getDeathday()!== null) {
     $mort=$actor->getDeathday();
