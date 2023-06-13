@@ -61,22 +61,7 @@ body{
     text-align: center;
 }
 
-a:link {
-    text-decoration: none;
-}
 
-a:visited {
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: none;
-    color: cornflowerblue
-}
-
-a:active {
-    text-decoration: none;
-}
 
 .content::-webkit-scrollbar
 {
@@ -317,10 +302,25 @@ h2{
     justify-content: center;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
     font-size: 22px;
+    flex-grow: 1;
 }
 
 img{
     border-radius: 25px;
+}
+
+a{
+    display: flex;
+    flex-grow: 1;
+}
+
+a:link, a:visited, a:active{
+    text-decoration: none;
+    color: white;
+}
+
+a:hover{
+    text-decoration: none;
+    color: cornflowerblue;
 }
