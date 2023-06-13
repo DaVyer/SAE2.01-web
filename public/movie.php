@@ -51,15 +51,15 @@ if (!empty($actors)) {
     foreach ($actors as $actor) {
         $cast = Cast::findByMovieAndPeopleId($filmId, $actor->getId());
         $role = $cast->getRole();
-        $webPage->appendContent("<div class='actor__container'>");
+        $webPage->appendContent("<div class='actor__container'><a href='acteur.php?peopleId={$actor->getId()}'> ");
         $cover = $actor->getCover();
 
         if ($cover !== null) {
             $img = base64_encode($cover->getJpeg());
-            $webPage->appendContent("<div class='actor__image'><a href='acteur.php?peopleId={$actor->getId()}'> <img src='data:image/jpeg;charset=utf-8;base64,{$img}' alt='{$actor->getName()}'></a></div>");
+            $webPage->appendContent("<div class='actor__image'><img src='data:image/jpeg;charset=utf-8;base64,{$img}' alt='{$actor->getName()}'></div>");
 
         } else {
-            $webPage->appendContent("<div class='actor__image'><a href='acteur.php?peopleId={$actor->getId()}'><img src='img/actor.png' alt='{$actor->getName()}'></a></div>");
+            $webPage->appendContent("<div class='actor__image'><img src='img/actor.png' alt='{$actor->getName()}'></div>");
         }
 
         $webPage->appendContent("
@@ -71,7 +71,7 @@ if (!empty($actors)) {
             <p>Rôle: {$role}</p>
         </div>
     </div>
-</div>");
+</a></div>");
     }
 
 } else {
