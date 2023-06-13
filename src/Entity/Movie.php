@@ -95,7 +95,7 @@ class Movie
     /**
      * @param int $posterId
      */
-    public function setPosterId(int $posterId): void
+    public function setPosterId(?int $posterId): void
     {
         $this->posterId = $posterId;
     }
@@ -286,18 +286,19 @@ SQL
             SQL
         );
 
-        $stmt->bindValue(':movieTitle', $this->getTitle());
-        $stmt->bindValue(':movieOL', $this->getOriginalLanguage());
-        $stmt->bindValue(':movieOT', $this->getOriginalTitle());
-        $stmt->bindValue(':movieOverview', $this->getOverview());
-        $stmt->bindValue(':movieRD', $this->getReleaseDate());
-        $stmt->bindValue(':movieRunTime', $this->getRuntime());
-        $stmt->bindValue(':movieTagline', $this->getTagline());
-        $stmt->bindValue(':moviePosterId', $this->getPosterId());
+        $this->setId((int) MyPdo::getInstance()->lastInsertId());
+
+        $stmt->bindValue(':movieTitle', $this->title);
+        $stmt->bindValue(':movieOL', $this->originalLanguage);
+        $stmt->bindValue(':movieOT', $this->originalTitle);
+        $stmt->bindValue(':movieOverview', $this->overview);
+        $stmt->bindValue(':movieRD', $this->releaseDate);
+        $stmt->bindValue(':movieRunTime', $this->runtime);
+        $stmt->bindValue(':movieTagline', $this->tagline);
+        $stmt->bindValue(':moviePosterId', $this->posterId);
 
         $stmt->execute();
 
-        $this->setId((int) MyPdo::getInstance()->lastInsertId());
 
         return clone $this;
     }
