@@ -278,4 +278,31 @@ SQL
 
         return $newMovie;
     }
+
+    public function insert()
+    {
+        $stmt = MyPDO::getInstance()->prepare(
+            <<<SQL
+                INSERT INTO movie (id, title, overview, originalLanguage, originalTitle, posterId, releaseDate, runtime, tagline)
+                VALUES (:artistId, :artistName, :movieOverview, :movieOL, :movieOT, :moviePosterId, :movieRD, :movieRunTime, :movieTagline)
+            SQL
+        );
+
+        $stmt->bindValue(':movieTitle', $this->title);
+        $stmt->bindValue(':movieOL', $this->originalLanguage);
+        $stmt->bindValue(':movieOT', $this->originalTitle);
+        $stmt->bindValue(':movieOverview', $this->overview);
+        $stmt->bindValue(':movieRD', $this->releaseDate);
+        $stmt->bindValue(':movieRunTime', $this->runtime);
+        $stmt->bindValue(':movieTagline', $this->tagline);
+        $stmt->bindValue(':moviePosterId', null);
+        $stmt->bindValue(':movieId', null);
+        $stmt->execute();
+
+        $this->setPosterId((int)MyPdo::getInstance()->lastInsertId());
+        $this->setId((int)MyPDO::getInstance()->lastInsertId());
+
+        return clone $this;
+    }
+
 }
