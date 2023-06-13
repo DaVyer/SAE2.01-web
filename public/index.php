@@ -18,26 +18,31 @@ $webPage->appendContent("<div class='list'>");
 foreach ($listeFilm as $film) {
     $moviesName = $webPage->escapeString("{$film->getTitle()}");
     $webPageFilm = Movie::findById($film->getId())->getPosterId();
-    $cover = Cover::findById($webPageFilm);
-    $img = base64_encode($cover->getJpeg());
-    $webPage->appendContent("
-<div class='film'>
-    <div class='film__poster'>");
-    if ($webPageFilm !== null) {
-        $img = base64_encode($cover->getJpeg());
-        $webPage->appendContent("<a href='movie.php?filmId={$film->getId()}'><img src='data:image/jpeg;charset=utf-8;base64,{$img}' alt='{$film->getTitle()}'></a>");
+    $cover = null;
+    $img = '';
 
+    if ($webPageFilm !== null) {
+        $cover = Cover::findById($webPageFilm);
+        $img = base64_encode($cover->getJpeg());
     } else {
-        $webPage->appendContent("<a href='movie.php?filmId={$film->getId()}'><img src='img/movie.png' alt='{$film->getTitle()}'></a>");
+        $img = 'img/movie.png';
+    }
+
+    $webPage->appendContent("
+        <div class='film'>
+            <div class='film__poster'>");
+    if ($cover !== null) {
+        $webPage->appendContent("<a href='movie.php?filmId={$film->getId()}'><img src='data:image/jpeg;charset=utf-8;base64,{$img}' alt='{$film->getTitle()}'></a>");
+    } else {
+        $webPage->appendContent("<a href='movie.php?filmId={$film->getId()}'><img src='{$img}' alt='{$film->getTitle()}'></a>");
     }
     $webPage->appendContent("
-    
-<div class='film__name'><a href='movie.php?filmId={$film->getId()}'>".$moviesName."</a></div>
-</div></div>
-<br>
-");
+                <div class='film__name'><a href='movie.php?filmId={$film->getId()}'>" . $moviesName . "</a></div>
+            </div>
+        </div>
+        <br>
+    ");
 }
 $webPage->appendContent("</div>");
 
 echo $webPage->toHTML();
-
