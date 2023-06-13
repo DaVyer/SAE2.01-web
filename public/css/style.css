@@ -326,3 +326,12 @@ a:hover{
     text-decoration: none;
     color: cornflowerblue;
 }
+
+.menu>*{
+    display: flex;
+}
+
+.menu > ul :nth-child(1n + 1){
+    display: flex;
+    justify-content: center;
+}

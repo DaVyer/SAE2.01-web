@@ -21,6 +21,17 @@ $webPage->setTitle("Film - {$webPageFilm->getTitle()}");
 $cover = Cover::findById($webPageFilm->getPosterId());
 $coverId = $webPageFilm->getPosterId();
 
+$webPage->appendContent("
+<nav role='navigation'>
+    <div class='menu'>
+        <ul>
+            <a href='index.php'>Page d'acceuil</a>
+            <a href='edition.php'>Page d'édition</a>
+        </ul>
+    </div>
+</nav>
+");
+
 if ($coverId !== null) {
     $img = "data:image/jpeg;charset=utf-8;base64, ".base64_encode($cover->getJpeg());
 } else {
