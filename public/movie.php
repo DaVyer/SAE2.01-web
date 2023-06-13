@@ -9,7 +9,7 @@ use Entity\Movie;
 use Entity\Collection\PeopleCollection;
 
 $webPage = new AppWebPage();
-$webPage->appendCssUrl("css\style.css");
+$webPage->appendCssUrl("css/style.css");
 
 $filmId = 1;
 if (!empty($_GET['filmId']) && ctype_digit($_GET['filmId'])) {
@@ -18,9 +18,6 @@ if (!empty($_GET['filmId']) && ctype_digit($_GET['filmId'])) {
 
 $webPageFilm = Movie::findById($filmId);
 $webPage->setTitle("Film - {$webPageFilm->getTitle()}");
-$cover = Cover::findById($webPageFilm->getPosterId());
-$coverId = $webPageFilm->getPosterId();
-
 $webPage->appendContent("
 <nav role='navigation'>
     <div class='menu'>
@@ -32,10 +29,17 @@ $webPage->appendContent("
 </nav>
 ");
 
+
+$coverId = $webPageFilm->getPosterId();
 if ($coverId !== null) {
-    $img = "data:image/jpeg;charset=utf-8;base64, ".base64_encode($cover->getJpeg());
+    $cover = Cover::findById($coverId);
 } else {
-    $img='img/movie.png';
+    $cover = null;
+}
+if ($cover !== null) {
+    $img = "data:image/jpeg;charset=utf-8;base64, " . base64_encode($cover->getJpeg());
+} else {
+    $img = 'img/movie.png';
 }
 
 $webPage->appendContent("
@@ -56,8 +60,6 @@ $webPage->appendContent("
 
 $peopleCollection = new PeopleCollection();
 $actors = $peopleCollection->findByMovieId($filmId);
-
-
 
 if (!empty($actors)) {
     $webPage->appendContent("
@@ -90,7 +92,6 @@ if (!empty($actors)) {
     </div>
 </a></div>");
     }
-
 } else {
     $webPage->appendContent("<p>Aucun acteur trouvé pour ce film.</p>");
 }

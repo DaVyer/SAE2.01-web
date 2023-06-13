@@ -12,11 +12,8 @@ $webPage->setTitle("Formulaire de création, d'édition ou de suppression d'un f
 $webPage->appendCssUrl("css/style.css");
 
 $webPage->appendContent("
-<form method='get' class='formulaire'>
+<form method='POST' class='formulaire' action='Modification.php'>
     <div class='form__input'>
-        <label for='id'>Entrer un id de film
-            <input type='text' name='id' id='id'>
-        </label>
         <label for='title'>Entrer un titre de film
             <input type='text' name='title' id='title' required>
         </label>
