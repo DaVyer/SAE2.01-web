@@ -305,4 +305,15 @@ SQL
         return clone $this;
     }
 
+    public function save()
+    {
+        if (isset($this->id)) {
+            $artist = $this->update();
+        } else {
+            $artist = $this->insert();
+        }
+
+        return $artist;
+    }
+
 }
