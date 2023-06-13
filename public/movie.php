@@ -18,6 +18,17 @@ if (!empty($_GET['filmId']) && ctype_digit($_GET['filmId'])) {
 
 $webPageFilm = Movie::findById($filmId);
 $webPage->setTitle("Film - {$webPageFilm->getTitle()}");
+$webPage->appendContent("
+<nav role='navigation'>
+    <div class='menu'>
+        <ul>
+            <a href='index.php'>Page d'acceuil</a>
+            <a href='edition.php'>Page d'édition</a>
+        </ul>
+    </div>
+</nav>
+");
+
 
 $coverId = $webPageFilm->getPosterId();
 if ($coverId !== null) {
