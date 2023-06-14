@@ -298,16 +298,18 @@ a:hover{
 
 .navigation{
     display: flex;
-}
-
-.menu{
-    display: flex;
+    flex-direction: column;
     background: #0e0e0e;
     border-radius: 25px;
     margin: 20px;
     flex-grow: 1;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+.menu{
+    display: flex;
+
 }
 
 .menu a{
@@ -336,6 +338,36 @@ a:hover{
     cursor: wait;
 }
 
+/* Liste genre */
+
+.liste__genre{
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.liste__genre > form > *{
+    margin: 5px;
+}
+
+.liste__genre > form > select, option{
+    font-size: 18px;
+    padding: 5px;
+    color: aliceblue;
+    background-color: black;
+    border-radius: 10px;
+    border: none;
+}
+
+.liste__genre > form > button{
+    font-size: 18px;
+    padding: 5px;
+    color: aliceblue;
+    background-color: black;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
 /* Formulaire */
 
 .formulaire{

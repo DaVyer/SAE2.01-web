@@ -28,7 +28,6 @@ $isActive = "";
 if ($selectedGenreId === null || $selectedGenreId === "all") {
     $isActive = "active";
 }
-$webPage->appendContent("<a href='index.php?genreId=all' class='" . $isActive . "'>Tous les genres</a>");
 foreach ($genres as $genre) {
     $genreId = $webPage->escapeString(strval($genre->getId()));
     $genreName = $webPage->escapeString($genre->getName());
@@ -37,9 +36,19 @@ foreach ($genres as $genre) {
     } else {
         $isActive = "";
     }
-    $webPage->appendContent("<a href='index.php?genreId={$genreId}' class='{$isActive}'>{$genreName}</a>");
+    $redirect = 'index.php?genreId={$genreId}';
 }
-$webPage->appendContent("</div>");
+$webPage->appendContent("
+<nav class='navigation'>
+    <div class='menu'>
+        <a href='edition.php'>Page d'édition</a>
+    </div>
+
+<div class='liste__genre'><form action=''><button>Choisissez un genre</button><select name='genreId'><option value='all'>Tous les genres</option>");
+foreach ($genres as $genre) {
+    $webPage->appendContent("<option value='{$genre->getId()}'>{$genre->getName()}</option>");
+}
+$webPage->appendContent("</select></form></div></nav>");
 
 $movieCollection = new MovieCollection();
 $listeFilm = [];
@@ -81,6 +90,6 @@ foreach ($listeFilm as $film) {
         <br>
     ");
 }
-$webPage->appendContent("</div>");
+$webPage->appendContent("</div></div>");
 
 echo $webPage->toHTML();
