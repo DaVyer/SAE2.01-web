@@ -22,27 +22,27 @@ $webPage->appendContent("
 <form method='POST' class='formulaire' action='Modification.php'>
     <div class='form__content'>
         <label for='title'>Entrer un titre de film
-            <input type='text' name='title' id='title' required>
+            <input type='text' name='title' id='title' placeholder='Ecriture exacte du film voulu' required>
         </label>
     </div>
     <div class='form__content'>
         <label for='originalLanguage'>Veuillez rentrer une version original
-            <input type='text' name='originalLanguage' id='originalLanguage' required>
+            <input type='text' name='originalLanguage' id='originalLanguage' placeholder='Alias de la langue' required>
         </label>
     </div>
     <div class='form__content'>
         <label for='originalTitle'>Veuillez rentrer un titre original
-            <input type='text' name='originalTitle' id='originalTitle' required>
+            <input type='text' name='originalTitle' id='originalTitle'  placeholder='Titre original du film'required>
         </label>
     </div>
     <div class='form__content'>
         <label for='overview'>Veuillez rentrer un résumé
-            <input type='text' name='overview' id='overview'>
+            <input type='text' name='overview' id='overview ' placeholder='Résumé du film'>
         </label>
     </div>
     <div class='form__content'>
         <label for='posterId'>Veuillez rentrer un identifiant d'affiche
-            <input type='text' name='posterId' id='posterId' accept='image/png'>
+            <input type='text' name='posterId' id='posterId' accept='image/png' placeholder='Numéro de l’affiche voulu'>
         </label>
     </div>
     <div class='form__content'>
@@ -52,12 +52,12 @@ $webPage->appendContent("
     </div>    
     <div class='form__content'>
         <label for='runtime'>Veuillez rentrer la durée du film
-            <input type='text' name='runtime' id='runtime' required>
+            <input type='text' name='runtime' id='runtime' placeholder='Durée en minutes' required>
         </label>
     </div>
     <div class='form__content'>
         <label for='tagline'>Veuillez rentrer le slogan du film
-            <input type='text' name='tagline' id='tagline'>
+            <input type='text' name='tagline' id='tagline' placeholder='Texte du slogan'>
         </label>
     </div>
     <div class='form__button'>
