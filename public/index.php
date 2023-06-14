@@ -38,11 +38,17 @@ foreach ($genres as $genre) {
     }
     $redirect = 'index.php?genreId={$genreId}';
 }
-$webPage->appendContent("<div class='liste__genre'><form action=''><select name='genreId'><option value='all'>Tous les genres</option>");
+$webPage->appendContent("
+<nav class='navigation'>
+    <div class='menu'>
+        <a href='edition.php'>Page d'édition</a>
+    </div>
+
+<div class='liste__genre'><form action=''><button>Choisissez un genre</button><select name='genreId'><option value='all'>Tous les genres</option>");
 foreach ($genres as $genre) {
     $webPage->appendContent("<option value='{$genre->getId()}'>{$genre->getName()}</option>");
 }
-$webPage->appendContent("</select><button>Choisissez un genre</button></form></div>");
+$webPage->appendContent("</select></form></div></nav>");
 
 $movieCollection = new MovieCollection();
 $listeFilm = [];
