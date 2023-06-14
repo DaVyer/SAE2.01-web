@@ -14,6 +14,15 @@ $webPage->appendCssUrl("css/style.css");
 
 // Rajout d'un en-tête expliquant comment fonctionne le form
 
+$webPage->appendContent("
+<nav class='navigation'>
+    <div class='menu'>
+        <a href='index.php'>Page d'acceuil</a>
+        <a href='edition.php'>Page d'édition</a>
+    </div>
+</nav>
+");
+
 if (isset($_POST['title'])) {
     $title = $_POST['title'];
 
@@ -82,3 +91,4 @@ if (isset($_POST['title'])) {
 }
 
 echo $webPage->toHTML();
+
