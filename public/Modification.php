@@ -82,3 +82,4 @@ if (isset($_POST['title'])) {
 }
 
 echo $webPage->toHTML();
+
