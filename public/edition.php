@@ -11,6 +11,8 @@ $webPage->setTitle("Formulaire de création ou d'édition");
 
 $webPage->appendCssUrl("css/style.css");
 
+
+
 $webPage->appendContent("
     <nav class='navigation'>
     <div class='menu'>
@@ -45,7 +47,7 @@ $webPage->appendContent("
     </div>
     <div class='form__content'>
         <label for='releaseDate'>Veuillez choisir une date de sortie
-            <input type='text' name='releaseDate' id='releaseDate' required>
+            <input type='date' name='releaseDate' id='releaseDate' value='01/01/2023' required>
         </label>
     </div>    
     <div class='form__content'>
