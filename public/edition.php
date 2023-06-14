@@ -44,7 +44,7 @@ $webPage->appendContent("
         </label>
     </div>
     <div class='form__content'>
-        <label for='releaseDate'>Veuillez choisir une affiche
+        <label for='releaseDate'>Veuillez choisir une date de sortie
             <input type='text' name='releaseDate' id='releaseDate' required>
         </label>
     </div>    
