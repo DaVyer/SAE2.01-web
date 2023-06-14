@@ -3,6 +3,7 @@
 namespace Entity\Collection;
 
 use Database\MyPdo;
+use PDO;
 
 class GenreCollection
 {
