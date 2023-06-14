@@ -288,7 +288,7 @@ a{
 
 a:link, a:visited, a:active{
     text-decoration: none;
-    color: white;
+    color: aliceblue;
 }
 
 a:hover{
@@ -315,6 +315,25 @@ a:hover{
     justify-content: space-evenly;
     font-size: 26px;
     text-decoration: underline;
+}
+
+.button__container{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.delete__button{
+    background-color: #000000;
+    color: aliceblue;
+    border: 2px solid #e5e5e6;
+    border-radius: 10px;
+    font-size: 18px;
+    padding: 5px 12px;
+    cursor: pointer;
+}
+
+.delete__button ::after{
+    cursor: wait;
 }
 
 @media (width <= 775px) {

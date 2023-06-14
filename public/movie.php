@@ -27,7 +27,6 @@ $webPage->appendContent("
 </nav>
 ");
 
-
 $coverId = $webPageFilm->getPosterId();
 if ($coverId !== null) {
     $cover = Cover::findById($coverId);
@@ -52,9 +51,14 @@ $webPage->appendContent("
                     <div class='film__originalTitle'>Titre original : {$webPageFilm->getOriginalTitle()}</div>
                     <div class='film__tagline'>Slogan : {$webPageFilm->getTagline()}</div>
                     <div class='film__overview'>Résumé : {$webPageFilm->getOverview()}</div>
+                    <form class='button__container' method='post' action='deleteMovie.php'>
+                        <input type='hidden' name='filmId' value='$filmId'>
+                        <input class ='delete__button' type='submit' value='Supprimer'>
+                    </form>
                 </div>
             </div>
         </div>");
+
 
 $peopleCollection = new PeopleCollection();
 $actors = $peopleCollection->findByMovieId($filmId);
@@ -96,10 +100,5 @@ if (!empty($actors)) {
 
 $webPage->appendContent("</div></div>");
 
-$webPage->appendContent("
-    <form method='post' action='deleteMovie.php'>
-        <input type='hidden' name='filmId' value='$filmId'>
-        <input type='submit' value='Supprimer'>
-    </form>
-");
+
 echo $webPage->toHTML();
