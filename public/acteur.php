@@ -22,6 +22,14 @@ $webPage->appendCssUrl("css\style.css");
 $webPage->setTitle("Films - {$actor->getName()}");
 
 $cover = $actor->getCover();
+$webPage->appendContent("
+<nav class='navigation'>
+    <div class='menu'>
+        <a href='index.php'>Page d'acceuil</a>
+        <a href='edition.php'>Page d'édition</a>
+    </div>
+</nav>
+");
 
 $webPage->appendContent("
         <div class='actor'>
