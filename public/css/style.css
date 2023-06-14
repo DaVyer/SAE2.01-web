@@ -336,6 +336,54 @@ a:hover{
     cursor: wait;
 }
 
+/* Formulaire */
+
+.formulaire{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.form__content{
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    padding: 10px;
+    font-size: 18px;
+}
+
+
+.form__content > label{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-grow: 1;
+}
+
+.form__content > label > input{
+    display: flex;
+    flex-grow: 1;
+    width: 65%;
+}
+
+.form__button{
+    display: flex;
+    justify-content: flex-end;
+    width: 65%;
+}
+
+.form__button > input{
+    background-color: #000000;
+    color: aliceblue;
+    border: 2px solid #e5e5e6;
+    border-radius: 10px;
+    font-size: 18px;
+    padding: 5px 12px;
+    cursor: pointer;
+}
+
+/* Media Queries */
+
 @media (width <= 775px) {
     .film__infos{
         display: flex;
