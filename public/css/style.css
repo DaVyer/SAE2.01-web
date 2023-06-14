@@ -382,6 +382,17 @@ a:hover{
 
 }
 
+p{
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    background-color: #0e0e0e;
+    border: none;
+    border-radius: 25px;
+    padding: 10px;
+    font-size: 24px;
+}
+
 .form__content{
     display: flex;
     flex-grow: 1;
@@ -512,6 +523,10 @@ a:hover{
     .acteur__infos{
         display: flex;
         flex-direction: column;
+    }
+
+    p{
+        text-align: center;
     }
 }
 
