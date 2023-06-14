@@ -33,7 +33,11 @@ if (isset($_POST['title'])) {
 
     if ($movie !== false) {
         if (isset($_POST['posterId'])) {
-            $posterId = !empty($_POST['posterId']) ? (int)$_POST['posterId'] : $movie->getPosterId();
+            if (!empty($_POST['posterId'])) {
+                $posterId = (int)$_POST['posterId'];
+            } else {
+                $posterId = $movie->getPosterId();
+            }
         } else {
             $posterId = $movie->getPosterId();
         }
