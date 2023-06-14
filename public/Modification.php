@@ -12,6 +12,7 @@ $webPage->setTitle("Création ou modification d'un film");
 
 $webPage->appendCssUrl("css/style.css");
 
+// Rajout d'un en-tête expliquant comment fonctionne le form
 
 if (isset($_POST['title'])) {
     $title = $_POST['title'];

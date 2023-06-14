@@ -38,11 +38,11 @@ foreach ($genres as $genre) {
     }
     $redirect = 'index.php?genreId={$genreId}';
 }
-$webPage->appendContent("<form action=''><select name='genreId'><option value='all'>Tous les genres</option>");
+$webPage->appendContent("<div class='liste__genre'><form action=''><select name='genreId'><option value='all'>Tous les genres</option>");
 foreach ($genres as $genre) {
     $webPage->appendContent("<option value='{$genre->getId()}'>{$genre->getName()}</option>");
 }
-$webPage->appendContent("</select><button>ca</button></form></div>");
+$webPage->appendContent("</select><button>Choisissez un genre</button></form></div>");
 
 $movieCollection = new MovieCollection();
 $listeFilm = [];
@@ -84,6 +84,6 @@ foreach ($listeFilm as $film) {
         <br>
     ");
 }
-$webPage->appendContent("</div>");
+$webPage->appendContent("</div></div>");
 
 echo $webPage->toHTML();
