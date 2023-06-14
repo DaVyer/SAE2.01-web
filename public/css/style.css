@@ -83,7 +83,6 @@ body{
 .film__infos{
     display: flex;
     flex-direction: row;
-    font-size: 18px;
     background-color: #0e0e0e;
     padding: 25px;
     border-radius: 25px;
@@ -92,7 +91,9 @@ body{
 .film__container{
     display: flex;
     flex-direction: column;
-    height: 100%;
+    flex-grow: 1;
+    justify-content: space-evenly;
+    font-size: 18px;
 }
 
 .film__container :first-child{
@@ -156,7 +157,8 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-left: 25px
+    flex-grow: 1;
+    font-size: 18px;
 }
 
 .actor__image{
@@ -165,14 +167,22 @@ body{
 
 .actor__name{
     display: flex;
-    justify-content: center;
     text-align: center;
+    margin: 10px;
+    background-color: black;
+    border-radius: 25px;
+    justify-content: flex-start;
+    padding-left: 10px;
 }
 
 .actor__role{
     display: flex;
-    justify-content: center;
     text-align: center;
+    margin: 10px;
+    background-color: black;
+    border-radius: 25px;
+    justify-content: flex-start;
+    padding-left: 10px;
 }
 h2{
     display: flex;
@@ -255,7 +265,6 @@ h2{
 }
 
 .acteur__contenu{
-    justify-content: center;
     display: flex;
     flex-direction: column;
     font-size: 22px;
@@ -265,7 +274,11 @@ h2{
 
 img{
     border-radius: 25px;
-    width: 100%;
+}
+
+.film__poster img{
+    min-width: 240px;
+    min-height: 360px;
 }
 
 a{
@@ -275,7 +288,7 @@ a{
 
 a:link, a:visited, a:active{
     text-decoration: none;
-    color: white;
+    color: aliceblue;
 }
 
 a:hover{
@@ -283,26 +296,44 @@ a:hover{
     color: cornflowerblue;
 }
 
+.navigation{
+    display: flex;
+}
+
 .menu{
+    display: flex;
     background: #0e0e0e;
     border-radius: 25px;
     margin: 20px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
-.menu>*{
-    display: flex;
-}
-
-.menu > ul :nth-child(1n + 1){
-    display: flex;
-    justify-content: center;
+    flex-grow: 1;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .menu a{
+    display: flex;
+    justify-content: space-evenly;
     font-size: 26px;
     text-decoration: underline;
+}
+
+.button__container{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.delete__button{
+    background-color: #000000;
+    color: aliceblue;
+    border: 2px solid #e5e5e6;
+    border-radius: 10px;
+    font-size: 18px;
+    padding: 5px 12px;
+    cursor: pointer;
+}
+
+.delete__button ::after{
+    cursor: wait;
 }
 
 @media (width <= 775px) {
@@ -311,11 +342,77 @@ a:hover{
         flex-direction: column;
     }
 
+    .film__originalTitle{
+        display: flex;
+        justify-content: center;
+    }
+    .film__poster img{
+        min-width: 180px;
+        min-height: 300px;
+    }
+
+}
+
+@media (width <= 550px){
+    .film__poster img {
+        width: 140px;
+        height: 260px;
+    }
+    .menu{
+        display: flex;
+        flex-direction: column;
+        margin: 10px;
+        flex-grow: 1;
+    }
+    .actor__container a{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .actor__image{
+        display: flex;
+        justify-content: center;
+    }
+
+    .actor__image img{
+        flex-grow: 1;
+        max-width: 160px;
+        max-height: 220px;
+        aspect-ratio: 2/3;
+    }
+    .actor__name, .actor__role{
+        justify-content: center;
+    }
+
+    .actor__infos{
+        flex-wrap: nowrap;
+    }
+
+    .actor__content, .film__container{
+        font-size: 16px;
+    }
 }
 
 @media (width <= 360px) {
     .actor__container{
         display: flex;
         flex-direction: row;
+    }
+    .film__poster img{
+        min-width: 100px;
+        min-height: 220px;
+    }
+
+    html {
+        min-width: 300px;
+        min-height: 450px;
+    }
+    h1{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .film__container :first-child{
+        display: flex;
+        flex-direction: column;
     }
 }
