@@ -12,6 +12,11 @@ $webPage->setTitle("Formulaire de création ou d'édition");
 $webPage->appendCssUrl("css/style.css");
 
 $webPage->appendContent("
+    <nav class='navigation'>
+    <div class='menu'>
+        <a href='index.php'>Page d'acceuil</a>
+    </div>
+</nav>
 <form method='POST' class='formulaire' action='Modification.php'>
     <div class='form__content'>
         <label for='title'>Entrer un titre de film

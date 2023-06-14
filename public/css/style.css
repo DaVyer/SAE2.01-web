@@ -342,14 +342,17 @@ a:hover{
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    background: #0e0e0f;
+    border-radius: 25px;
+
 }
 
 .form__content{
     display: flex;
     flex-grow: 1;
-    justify-content: center;
     padding: 10px;
     font-size: 18px;
+    justify-content: center;
 }
 
 
@@ -357,7 +360,7 @@ a:hover{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    flex-grow: 1;
+    width: 95%;
 }
 
 .form__content > label > input{
